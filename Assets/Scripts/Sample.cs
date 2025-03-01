@@ -2,5 +2,5 @@ using UnityEngine;
 
 public class Sample : MonoBehaviour
 {
-    // Sample Thing
+    // Sample Thing test
 }
