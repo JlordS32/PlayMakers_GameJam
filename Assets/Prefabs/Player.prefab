@@ -157,7 +157,7 @@ GameObject:
   - component: {fileID: 1148543983199458506}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -206,6 +206,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0414d11af7a69c7478d0451d45235202, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  checkpointPrefab: {fileID: 740268623899145754, guid: 54660a677e0958e45be795ee1cc63a2b, type: 3}
 --- !u!114 &7681440674378428934
 MonoBehaviour:
   m_ObjectHideFlags: 0
