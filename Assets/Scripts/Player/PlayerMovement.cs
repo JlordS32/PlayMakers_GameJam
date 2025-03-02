@@ -6,10 +6,12 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float speed;
     [SerializeField] private float runningSpeed;
     [SerializeField] private Transform cameraTransform;
+    [SerializeField] private float jumpForce;
 
     private Vector2 movementInput;
     private Rigidbody rb;
     private float initialSpeed;
+    private bool isGrounded;    
 
     void Awake()
     {
@@ -18,6 +20,23 @@ public class PlayerMovement : MonoBehaviour
         ToggleCursor.Toggle();
         initialSpeed = speed;
     }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            isGrounded = true;
+        }
+    }
+
+    void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            isGrounded = false;
+        }
+    }
+
 
     public void OnMove(InputValue value) // Callback function from Input System
     {
@@ -32,10 +51,20 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    public void OnJump()
+    {
+        if (isGrounded)
+        {
+            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            isGrounded = false;
+        }
+    }
+
     void Update()
     {
         Vector3 forward = cameraTransform.forward;
         Vector3 right = cameraTransform.right;
+        Debug.Log(isGrounded);
 
         // Lock movement to XZ plane
         forward.y = 0;
@@ -48,6 +77,6 @@ public class PlayerMovement : MonoBehaviour
         Vector3 moveDirection = (forward * movementInput.y + right * movementInput.x).normalized;
 
         // Apply movement using Rigidbody
-        rb.linearVelocity = speed * moveDirection;
+        rb.linearVelocity = new Vector3(moveDirection.x * speed, rb.linearVelocity.y, moveDirection.z * speed);
     }
 }
