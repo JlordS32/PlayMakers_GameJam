@@ -1,28 +1,38 @@
 using UnityEngine;
 using StarterAssets;
+using UnityEngine.InputSystem;
 
 public class PlayerReset : MonoBehaviour
 {
-    private Vector3 resetPosition;
-    private CharacterController controller;
+    [Header("Testing")]
+    private readonly KeyCode resetKey = KeyCode.R;
+    private readonly KeyCode checkpointKey = KeyCode.T;
+
+    private Vector3 checkpointPosition;
 
     void Awake()
     {
-        controller = GetComponent<CharacterController>();
-        resetPosition = transform.position;
+        checkpointPosition = transform.position;
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKeyDown(checkpointKey))
         {
-            Debug.Log("Initial Pos: " + resetPosition);
+            UpdateCheckPoint();
+        }
+
+        if (Input.GetKeyDown(resetKey)) {
             ResetPosition();
         }
     }
 
+    void UpdateCheckPoint() {
+        checkpointPosition = transform.position;
+    }
+
     void ResetPosition()
     {
-        transform.position = resetPosition;  
+        transform.position = checkpointPosition;  
     }
 }
