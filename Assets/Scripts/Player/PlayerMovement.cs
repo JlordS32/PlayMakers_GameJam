@@ -9,12 +9,14 @@ public class PlayerMovement : MonoBehaviour
 
     private Vector2 movementInput;
     private Rigidbody rb;
+    private float initialSpeed;
 
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
         ToggleCursor.Toggle();
+        initialSpeed = speed;
     }
 
     public void OnMove(InputValue value) // Callback function from Input System
@@ -26,7 +28,7 @@ public class PlayerMovement : MonoBehaviour
         if (value.isPressed) {
             speed = runningSpeed;
         } else {
-            speed = 5f;
+            speed = initialSpeed;
         }
     }
 
