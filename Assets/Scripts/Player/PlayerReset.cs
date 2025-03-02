@@ -1,17 +1,32 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerReset : MonoBehaviour
 {
     [Header("Prefabs")]
     [SerializeField] private GameObject checkpointPrefab;
     [SerializeField] private Transform parentFolder;
+    [SerializeField] private PlayerData playerData;
 
     [Header("Testing")]
     private readonly KeyCode resetKey = KeyCode.R;
     private readonly KeyCode checkpointKey = KeyCode.T;
 
     private GameObject currentCheckpoint;
+
+    void Awake()
+    {
+        if (playerData.hasSavedPosition)
+        {
+            transform.position = playerData.playerPosition;
+        }
+        else
+        {
+            playerData.playerPosition = transform.position; // Store the default position
+            playerData.hasSavedPosition = true;
+        }
+    }
 
     void Update()
     {
@@ -23,6 +38,11 @@ public class PlayerReset : MonoBehaviour
         if (Input.GetKeyDown(resetKey))
         {
             ResetPosition();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            Debug.Log(playerData.playerPosition);
         }
     }
 
@@ -51,8 +71,25 @@ public class PlayerReset : MonoBehaviour
 
         if (currentCheckpoint != null)
         {
+            playerData.playerPosition = currentCheckpoint.transform.position;
             Destroy(currentCheckpoint);
-            transform.position = currentCheckpoint.transform.position;
+
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
+
+    void OnApplicationQuit()
+    {
+        playerData.ResetData();
+    }
+
+#if UNITY_EDITOR
+    void OnDisable()
+    {
+        if (!Application.isPlaying)
+        {
+            playerData.ResetData();
+        }
+    }
+#endif
 }

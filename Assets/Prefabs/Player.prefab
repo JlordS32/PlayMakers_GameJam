@@ -207,6 +207,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   checkpointPrefab: {fileID: 740268623899145754, guid: 54660a677e0958e45be795ee1cc63a2b, type: 3}
+  parentFolder: {fileID: 0}
+  playerData: {fileID: 11400000, guid: 881d608191f69084d89f3866bf8d1923, type: 2}
 --- !u!114 &7681440674378428934
 MonoBehaviour:
   m_ObjectHideFlags: 0
