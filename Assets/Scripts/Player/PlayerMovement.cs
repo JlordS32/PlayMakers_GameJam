@@ -23,23 +23,7 @@ public class PlayerMovement : MonoBehaviour
         ToggleCursor.Toggle();
         initialSpeed = speed;
     }
-
-    void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Ground"))
-        {
-            isGrounded = true;
-        }
-    }
-
-    void OnCollisionExit(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Ground"))
-        {
-            isGrounded = false;
-        }
-    }
-
+    
     public void OnMove(InputValue value) // Callback function from Input System
     {
         movementInput = value.Get<Vector2>();
