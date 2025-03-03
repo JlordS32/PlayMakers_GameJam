@@ -8,6 +8,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Transform cameraTransform;
     [SerializeField] private float jumpForce;
     [SerializeField] private float extraGravity;
+    [SerializeField] private float groundCheckDistance = 0.2f;
+    [SerializeField] private LayerMask groundLayer;
 
     private Vector2 movementInput;
     private Rigidbody rb;
@@ -45,14 +47,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void OnSprint(InputValue value)
     {
-        if (value.isPressed)
-        {
-            speed = runningSpeed;
-        }
-        else
-        {
-            speed = initialSpeed;
-        }
+        speed = value.isPressed ? runningSpeed : initialSpeed;
     }
 
     public void OnJump()
@@ -65,23 +60,18 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        Vector3 forward = cameraTransform.forward;
-        Vector3 right = cameraTransform.right;
+        CheckGround();
         Debug.Log(isGrounded);
 
-        // Lock movement to XZ plane
-        forward.y = 0;
-        right.y = 0;
-
-        forward.Normalize();
-        right.Normalize();
+        Vector3 forward = cameraTransform.forward;
+        Vector3 right = cameraTransform.right;
 
         // Compute movement direction
         Vector3 moveDirection = (forward * movementInput.y + right * movementInput.x).normalized;
 
         // Apply movement using Rigidbody
 
-        if (rb.linearVelocity.y < 0)
+        if (rb.linearVelocity.y < 0 && !isGrounded)
         {
             rb.linearVelocity += extraGravity * Time.deltaTime * Vector3.down;
         }
@@ -89,5 +79,21 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.linearVelocity = new Vector3(moveDirection.x * speed, rb.linearVelocity.y, moveDirection.z * speed);
         }
+    }
+
+    // We're using raycast to efficiently check if the player is on the ground.
+    // Feel free to change the value of `groundCheckDistance`.
+    void CheckGround()
+    {
+        isGrounded = Physics.Raycast(transform.position, Vector3.down, groundCheckDistance, groundLayer);
+    }
+
+    // This is the red line below the player.
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red; 
+        Vector3 start = transform.position;
+        Vector3 end = transform.position + Vector3.down * groundCheckDistance;
+        Gizmos.DrawLine(start, end);
     }
 }
