@@ -194,6 +194,12 @@ MonoBehaviour:
   speed: 5
   runningSpeed: 10
   cameraTransform: {fileID: 0}
+  jumpForce: 5
+  extraGravity: 8
+  groundCheckDistance: 1
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!114 &6264020255028981463
 MonoBehaviour:
   m_ObjectHideFlags: 0
