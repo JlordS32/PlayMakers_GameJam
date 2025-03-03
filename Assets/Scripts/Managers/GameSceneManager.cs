@@ -1,16 +1,23 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameSceneManager : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public static int level;
+
+    void Awake()
     {
-        
+        level = SceneManager.GetActiveScene().buildIndex;
     }
 
-    // Update is called once per frame
-    void Update()
+    public static void LoadNextScene()
     {
-        
+        level++;
+        SceneManager.LoadScene(level);
+    }
+
+    public static void LoadScene(int value)
+    {
+        SceneManager.LoadScene(value);
     }
 }

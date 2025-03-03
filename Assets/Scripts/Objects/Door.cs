@@ -1,7 +1,10 @@
+using System.Collections;
 using UnityEngine;
 
 public class Door : MonoBehaviour
 {
+    [SerializeField] private int delay = 2;
+
     private BoxCollider boxCollider;
     private Animator animator;
 
@@ -18,7 +21,7 @@ public class Door : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Triggering");      
+        StartCoroutine(GoNextLevel());
     }
 
     public void toggleTrigger()
@@ -26,4 +29,9 @@ public class Door : MonoBehaviour
         boxCollider.isTrigger = !boxCollider.isTrigger;
         animator.SetBool("isOpen", boxCollider.isTrigger);
     }
+
+    IEnumerator GoNextLevel() {
+        yield return new WaitForSeconds(delay);
+        GameSceneManager.LoadNextScene();
+    } 
 }
