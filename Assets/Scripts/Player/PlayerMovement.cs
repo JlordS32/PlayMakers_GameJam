@@ -7,11 +7,12 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float runningSpeed;
     [SerializeField] private Transform cameraTransform;
     [SerializeField] private float jumpForce;
+    [SerializeField] private float extraGravity;
 
     private Vector2 movementInput;
     private Rigidbody rb;
     private float initialSpeed;
-    private bool isGrounded;    
+    private bool isGrounded;
 
     void Awake()
     {
@@ -43,10 +44,14 @@ public class PlayerMovement : MonoBehaviour
         movementInput = value.Get<Vector2>();
     }
 
-    public void OnSprint(InputValue value) {
-        if (value.isPressed) {
+    public void OnSprint(InputValue value)
+    {
+        if (value.isPressed)
+        {
             speed = runningSpeed;
-        } else {
+        }
+        else
+        {
             speed = initialSpeed;
         }
     }
@@ -56,7 +61,6 @@ public class PlayerMovement : MonoBehaviour
         if (isGrounded)
         {
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-            isGrounded = false;
         }
     }
 
@@ -77,6 +81,14 @@ public class PlayerMovement : MonoBehaviour
         Vector3 moveDirection = (forward * movementInput.y + right * movementInput.x).normalized;
 
         // Apply movement using Rigidbody
-        rb.linearVelocity = new Vector3(moveDirection.x * speed, rb.linearVelocity.y, moveDirection.z * speed);
+
+        if (rb.linearVelocity.y < 0)
+        {
+            rb.linearVelocity += extraGravity * Time.deltaTime * Vector3.down;
+        }
+        else
+        {
+            rb.linearVelocity = new Vector3(moveDirection.x * speed, rb.linearVelocity.y, moveDirection.z * speed);
+        }
     }
 }
