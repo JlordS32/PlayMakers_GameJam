@@ -43,7 +43,6 @@ GameObject:
   - component: {fileID: 5450672527520453682}
   - component: {fileID: 5614304486049666000}
   - component: {fileID: 5294948992710593239}
-  - component: {fileID: 794180883737869357}
   m_Layer: 0
   m_Name: Capsule
   m_TagString: Untagged
@@ -119,29 +118,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &794180883737869357
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4545224897278839251}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8160193374047074611
 GameObject:
   m_ObjectHideFlags: 0
@@ -155,6 +131,7 @@ GameObject:
   - component: {fileID: 6264020255028981463}
   - component: {fileID: 7681440674378428934}
   - component: {fileID: 1148543983199458506}
+  - component: {fileID: 1940652996499184870}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -196,7 +173,7 @@ MonoBehaviour:
   cameraTransform: {fileID: 0}
   jumpForce: 5
   extraGravity: 8
-  groundCheckDistance: 1
+  groundCheckDistance: 1.1
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
@@ -272,6 +249,29 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!136 &1940652996499184870
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8160193374047074611}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5027155
+  m_Height: 2.0274234
+  m_Direction: 1
+  m_Center: {x: -0.002715528, y: -0.005238533, z: 0}
 --- !u!1 &8796673116009005777
 GameObject:
   m_ObjectHideFlags: 0

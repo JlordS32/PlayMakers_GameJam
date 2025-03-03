@@ -45,7 +45,6 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         CheckGround();
-        Debug.Log(isGrounded);
 
         Vector3 forward = cameraTransform.forward;
         Vector3 right = cameraTransform.right;
@@ -54,9 +53,10 @@ public class PlayerMovement : MonoBehaviour
         Vector3 moveDirection = (forward * movementInput.y + right * movementInput.x).normalized;
 
         // Apply movement using Rigidbody
-
-        if (rb.linearVelocity.y < 0 && !isGrounded)
+        if (rb.linearVelocity.y < -0.1f && !isGrounded)
         {
+            Debug.Log("Falling");
+            Debug.Log(rb.linearVelocity.y);
             rb.linearVelocity += extraGravity * Time.deltaTime * Vector3.down;
         }
         else
