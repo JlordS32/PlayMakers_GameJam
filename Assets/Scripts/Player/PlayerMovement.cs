@@ -38,7 +38,6 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-
     public void OnMove(InputValue value) // Callback function from Input System
     {
         movementInput = value.Get<Vector2>();

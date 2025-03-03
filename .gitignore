@@ -67,3 +67,9 @@ npm-debug.log
 # Cache files
 /Assets/StreamingAssets/aa.meta
 /Assets/StreamingAssets/aa/*
+
+# YAML
+*.unity merge=unityyamlmerge  
+*.prefab merge=unityyamlmerge  
+*.asset merge=unityyamlmerge  
+*.mat merge=unityyamlmerge  

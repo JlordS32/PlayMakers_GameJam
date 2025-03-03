@@ -168,6 +168,17 @@
                 },
                 {
                     "name": "",
+                    "id": "6dba854f-8376-47dd-85b1-0bf27e57b85a",
+                    "path": "<Keyboard>/ctrl",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Sprint",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "2d83a013-891a-4627-b3e3-b632e1ac7bfb",
                     "path": "<Keyboard>/space",
                     "interactions": "",
