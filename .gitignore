@@ -75,5 +75,14 @@ npm-debug.log
 *.mat merge=unityyamlmerge  
 
 
-/UserSettings/*
-/.vs/*
+
+# Ignore Unity Render Pipeline settings (.meta files)
+Assets/Settings/*_PipelineAsset*.meta
+Assets/Settings/*_PipelineAsset_ForwardRenderer*.meta
+Assets/UniversalRenderPipelineGlobalSettings.asset.meta
+
+# Ignore Unity user-specific layout settings
+UserSettings/Layouts/*.dwlt
+UserSettings/*
+.vs/*
+
