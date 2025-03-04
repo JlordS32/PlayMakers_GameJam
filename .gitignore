@@ -75,4 +75,4 @@ npm-debug.log
 *.mat merge=unityyamlmerge  
 
 
-/UserSettings
+/UserSettings/*
