@@ -73,3 +73,6 @@ npm-debug.log
 *.prefab merge=unityyamlmerge  
 *.asset merge=unityyamlmerge  
 *.mat merge=unityyamlmerge  
+
+
+/UserSettings
