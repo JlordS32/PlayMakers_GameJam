@@ -1,6 +1,15 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Prefabs/Objects/boxMoveAble.prefab.meta
 guid: 9f6eba89169a2b04482c1defba96cd99
 PrefabImporter:
+=======
+<<<<<<<< HEAD:Assets/InputSystem.inputsettings.asset.meta
+guid: fe794edd048207e449776f2411ccce0f
+========
+guid: f575e92ebb49eb74c98345e4fa5c62d0
+>>>>>>>> origin/main:Assets/ScriptableObjects/ObjectData.asset.meta
+NativeFormatImporter:
+>>>>>>> origin/main:Assets/InputSystem.inputsettings.asset.meta
   externalObjects: {}
   userData: 
   assetBundleName: 
