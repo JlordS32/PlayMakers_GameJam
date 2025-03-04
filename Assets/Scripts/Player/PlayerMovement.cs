@@ -1,21 +1,37 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] private float speed;
-    [SerializeField] private float runningSpeed;
-    [SerializeField] private Transform cameraTransform;
-    [SerializeField] private float jumpForce;
-    [SerializeField] private float extraGravity;
+    [Header("Base Parameters")]
+    [SerializeField] private float speed = 1f;
+    [SerializeField] private float runningSpeed = 1f;
+    [SerializeField] private float jumpForce = 1f;
+
+    [Header("Dash Parameters")]
+    [SerializeField] private float dashingSpeed = 1f;
+    [SerializeField] private float delayTime = 1;
+
+    [Header("Falling Parameters")]
+    [SerializeField] private float extraGravity = 1f;
     [SerializeField] private float groundCheckDistance = 0.2f;
+
+    [Header("References")]
+    [SerializeField] private Transform cameraTransform;
     [SerializeField] private LayerMask groundLayer;
 
+    // Public variables
+    private int dashes = 0;
+    private int extraJumps = 1;
+
+    // Private variables
     private Vector2 movementInput;
     private Rigidbody rb;
     private float initialSpeed;
     private bool isGrounded;
 
+    #region UNITY_FUNCTIONS
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -23,7 +39,7 @@ public class PlayerMovement : MonoBehaviour
         ToggleCursor.Toggle();
         initialSpeed = speed;
     }
-    
+
     public void OnMove(InputValue value) // Callback function from Input System
     {
         movementInput = value.Get<Vector2>();
@@ -31,7 +47,8 @@ public class PlayerMovement : MonoBehaviour
 
     public void OnSprint(InputValue value)
     {
-        speed = value.isPressed ? runningSpeed : initialSpeed;
+        StopCoroutine(Accelerate(value.isPressed));
+        StartCoroutine(Accelerate(value.isPressed));
     }
 
     public void OnJump()
@@ -39,6 +56,14 @@ public class PlayerMovement : MonoBehaviour
         if (isGrounded)
         {
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+        }
+        else
+        {
+            if (extraJumps > 0)
+            {
+                rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+                extraJumps--;
+            }
         }
     }
 
@@ -55,8 +80,6 @@ public class PlayerMovement : MonoBehaviour
         // Apply movement using Rigidbody
         if (rb.linearVelocity.y < -0.1f && !isGrounded)
         {
-            Debug.Log("Falling");
-            Debug.Log(rb.linearVelocity.y);
             rb.linearVelocity += extraGravity * Time.deltaTime * Vector3.down;
         }
         else
@@ -64,7 +87,24 @@ public class PlayerMovement : MonoBehaviour
             rb.linearVelocity = new Vector3(moveDirection.x * speed, rb.linearVelocity.y, moveDirection.z * speed);
         }
     }
+    #endregion
 
+    #region PUBLIC_METHODS
+    public void AddDash()
+    {
+        dashes++;
+        Debug.Log("Dash obtained!");
+    }
+
+    public void AddJump()
+    {
+        extraJumps++;
+        Debug.Log("Jump obtained!");
+    }
+
+    #endregion
+
+    #region PRIVATE_METHODS
     // We're using raycast to efficiently check if the player is on the ground.
     // Feel free to change the value of `groundCheckDistance`.
     void CheckGround()
@@ -72,12 +112,43 @@ public class PlayerMovement : MonoBehaviour
         isGrounded = Physics.Raycast(transform.position, Vector3.down, groundCheckDistance, groundLayer);
     }
 
+    IEnumerator Accelerate(bool isSprinting = false)
+    {
+        if (isSprinting)
+        {
+            if (isGrounded)
+            {
+                speed = runningSpeed;
+            }
+            else if (dashes > 0 && !isGrounded)
+            {
+                Debug.Log("Dashing");
+                speed = dashingSpeed;
+                dashes--;
+            }
+            else
+            {
+                speed = initialSpeed;
+            }
+        }
+        else
+        {
+            speed = initialSpeed;
+        }
+
+        yield return new WaitForSeconds(delayTime);
+
+        speed = isGrounded ? runningSpeed : initialSpeed;
+    }
+
+
     // This is the red line below the player.
     void OnDrawGizmos()
     {
-        Gizmos.color = Color.red; 
+        Gizmos.color = Color.red;
         Vector3 start = transform.position;
         Vector3 end = transform.position + Vector3.down * groundCheckDistance;
         Gizmos.DrawLine(start, end);
     }
+    #endregion
 }
