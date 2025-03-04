@@ -73,8 +73,6 @@ public class PlayerMovement : MonoBehaviour
 
         Vector3 forward = cameraTransform.forward;
         Vector3 right = cameraTransform.right;
-        Debug.Log(extraJumps);
-        Debug.Log("Grounded: " + isGrounded);
 
         // Compute movement direction
         Vector3 moveDirection = (forward * movementInput.y + right * movementInput.x).normalized;
