@@ -6,6 +6,9 @@
 [Bb]uilds/
 [Ll]ogs/
 [Mm]emoryCaptures/
+[Pp]rojectSettings/
+[Uu]serSettings/
+[Ll]udiq*
 
 # Visual Studio / MonoDevelop generated files
 *.csproj
@@ -74,15 +77,26 @@ npm-debug.log
 *.asset merge=unityyamlmerge  
 *.mat merge=unityyamlmerge  
 
-
-
 # Ignore Unity Render Pipeline settings (.meta files)
 Assets/Settings/*_PipelineAsset*.meta
 Assets/Settings/*_PipelineAsset_ForwardRenderer*.meta
 Assets/UniversalRenderPipelineGlobalSettings.asset.meta
 
-# Ignore Unity user-specific layout settings
-UserSettings/Layouts/*.dwlt
-UserSettings/*
+# Vscode
 .vs/*
+*.vsconfig
+*.UpgradeLoh.htm
 
+# Blender
+*.blend1
+Assets/AssetStoreTools*
+
+# Unity3D generated meta files
+*.pidb.meta
+*.pdb.meta
+
+# Unity generated crash files
+sysinfo.txt
+
+# Builds
+*.apk
