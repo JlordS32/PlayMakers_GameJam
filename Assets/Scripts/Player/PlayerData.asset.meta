@@ -1,8 +1,19 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Scripts/Player/PlayerData.asset.meta
+<<<<<<<< HEAD:Assets/Scripts/Player/PlayerData.asset.meta
 guid: 881d608191f69084d89f3866bf8d1923
+========
+guid: f575e92ebb49eb74c98345e4fa5c62d0
+>>>>>>>> f18727bf4b321de45d08bfb1ee76bf74224fb005:Assets/ScriptableObjects/ObjectData.asset.meta
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 0
+=======
+guid: ac84573cdc9c5544d84cf297a7b638cc
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+>>>>>>> f18727bf4b321de45d08bfb1ee76bf74224fb005:Assets/ScriptableObjects/PlayerData.asset.meta
   userData: 
   assetBundleName: 
   assetBundleVariant: 
