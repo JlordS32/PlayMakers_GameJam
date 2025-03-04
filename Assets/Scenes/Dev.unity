@@ -522,6 +522,7 @@ GameObject:
   - component: {fileID: 553859202}
   - component: {fileID: 553859201}
   - component: {fileID: 553859200}
+  - component: {fileID: 553859204}
   m_Layer: 6
   m_Name: Box (1)
   m_TagString: Object
@@ -615,7 +616,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 7bb0695cd4969a047924f753b3c8a118, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -645,6 +646,20 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 553859198}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &553859204
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 553859198}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5dbe9156d604de84dba64bfe676cb3d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectData: {fileID: 11400000, guid: 67ef1bd950780434cbd10f3df053a0eb, type: 2}
+  key: box_1
 --- !u!1 &595450781
 GameObject:
   m_ObjectHideFlags: 0
