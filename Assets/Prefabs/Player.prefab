@@ -170,13 +170,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   runningSpeed: 10
-  cameraTransform: {fileID: 0}
   jumpForce: 5
+  dashingSpeed: 20
+  delayTime: 0.2
   extraGravity: 8
   groundCheckDistance: 1.1
+  cameraTransform: {fileID: 0}
   groundLayer:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 4294967295
 --- !u!114 &6264020255028981463
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -191,7 +193,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   checkpointPrefab: {fileID: 740268623899145754, guid: 54660a677e0958e45be795ee1cc63a2b, type: 3}
   parentFolder: {fileID: 0}
-  playerData: {fileID: 11400000, guid: 881d608191f69084d89f3866bf8d1923, type: 2}
+  playerData: {fileID: 11400000, guid: ac84573cdc9c5544d84cf297a7b638cc, type: 2}
 --- !u!114 &7681440674378428934
 MonoBehaviour:
   m_ObjectHideFlags: 0
