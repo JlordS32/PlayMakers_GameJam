@@ -6,7 +6,6 @@
 [Bb]uilds/
 [Ll]ogs/
 [Mm]emoryCaptures/
-[Pp]rojectSettings/
 [Uu]serSettings/
 [Ll]udiq*
 
@@ -24,7 +23,6 @@
 
 # Unity metadata files
 *.unitypackage
-*.asset
 
 # OS-specific files
 .DS_Store
