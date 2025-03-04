@@ -23,6 +23,7 @@ public class PlayerMovement : MonoBehaviour
 
     // Public variables
     private int dashes = 0;
+    private int extraJumps = 1;
 
     // Private variables
     private Vector2 movementInput;
@@ -56,6 +57,14 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
         }
+        else
+        {
+            if (extraJumps > 0)
+            {
+                rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+                extraJumps--;
+            }
+        }
     }
 
     void Update()
@@ -87,6 +96,12 @@ public class PlayerMovement : MonoBehaviour
         Debug.Log("Dash obtained!");
     }
 
+    public void AddJump()
+    {
+        extraJumps++;
+        Debug.Log("Jump obtained!");
+    }
+
     #endregion
 
     #region PRIVATE_METHODS
@@ -109,7 +124,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 Debug.Log("Dashing");
                 speed = dashingSpeed;
-                dashes--; 
+                dashes--;
             }
             else
             {
