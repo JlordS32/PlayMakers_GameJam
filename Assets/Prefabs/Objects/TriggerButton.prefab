@@ -118,7 +118,7 @@ MonoBehaviour:
   triggerOnExit: 1
   targetTags:
   - Player
-  - Oject
+  - Objects
 --- !u!95 &3129289731427298712
 Animator:
   serializedVersion: 7

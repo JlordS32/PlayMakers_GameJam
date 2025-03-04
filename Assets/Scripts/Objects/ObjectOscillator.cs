@@ -2,10 +2,22 @@ using UnityEngine;
 
 public class ObjectOscillator : MonoBehaviour
 {
-    [SerializeField] float oscillationSpeed = 1f;
-    [SerializeField] float oscillationDistance = 1f;
+    [SerializeField] private float oscillationSpeed = 1f;
+    [SerializeField] private float oscillationDistance = 1f;
+    [SerializeField] private bool centre = true;
+    [SerializeField] private bool loop = true;
+    [SerializeField] private bool force = true;
+    [Range(-1, 1)]
+    [SerializeField] private float oscillationX;
+    [Range(-1, 1)]
+    [SerializeField] private float oscillationY;
+    [Range(-1, 1)]
+    [SerializeField] private float oscillationZ;
+    [SerializeField] private int cycles = 1;
 
     private Vector3 initialPosition;
+    private float cycle = 0f;
+    private bool trigger = false;
 
     void Awake()
     {
@@ -14,16 +26,50 @@ public class ObjectOscillator : MonoBehaviour
 
     void Update()
     {
-        float oscillation = Mathf.PingPong(Time.time * oscillationSpeed, oscillationDistance * 2) - oscillationDistance;
-        transform.position = initialPosition + new Vector3(oscillation, 0, 0);
+        if (!force && !trigger) return;
+        Oscillate();
     }
 
     void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Vector3 start = initialPosition - new Vector3(oscillationDistance, 0, 0);
-        Vector3 end = initialPosition + new Vector3(oscillationDistance, 0, 0);
-        Gizmos.DrawLine(start, end);
+
+        if (centre)
+        {
+            Vector3 start = initialPosition - new Vector3(oscillationX * oscillationDistance, oscillationY * oscillationDistance, oscillationZ * oscillationDistance);
+            Vector3 end = initialPosition + new Vector3(oscillationX * oscillationDistance, oscillationY * oscillationDistance, oscillationZ * oscillationDistance);
+            Gizmos.DrawLine(start, end);
+        }
+        else
+        {
+            Vector3 end = initialPosition + new Vector3(oscillationX * oscillationDistance * 2, oscillationY * oscillationDistance * 2, oscillationZ * oscillationDistance * 2);
+            Gizmos.DrawLine(initialPosition, end);
+        }
     }
 
+    private void Oscillate()
+    {
+        cycle += Time.deltaTime * oscillationSpeed;
+
+        float oscillation = Mathf.PingPong(Time.time * oscillationSpeed, oscillationDistance * 2) + (centre ? -oscillationDistance : 0);
+        transform.position = initialPosition + new Vector3(oscillationX * oscillation, oscillationY * oscillation, oscillation * oscillationZ);
+
+        if (!loop && cycle >= oscillationDistance * 2) // One cycle
+        {
+            if (cycles > 0)
+            {
+                cycles--;
+                cycle = 0f;
+            }
+            else
+            {
+                force = trigger = false;
+            }
+        }
+    }
+
+    public void TriggerOscillate()
+    {
+        trigger = true;
+    }
 }
