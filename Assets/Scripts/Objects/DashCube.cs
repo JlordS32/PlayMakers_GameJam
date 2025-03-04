@@ -2,8 +2,13 @@ using UnityEngine;
 
 public class DashCube : MonoBehaviour
 {
-    void OnCollisionEnter(Collision collision)
+    void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Hello");
+        if (other.CompareTag("Player"))
+        {
+            PlayerMovement playerMovement = other.GetComponent<PlayerMovement>();
+            playerMovement.AddDash();
+            Destroy(gameObject);
+        }
     }
 }

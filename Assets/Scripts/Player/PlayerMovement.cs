@@ -84,6 +84,7 @@ public class PlayerMovement : MonoBehaviour
     public void AddDash()
     {
         dashes++;
+        Debug.Log("Dash obtained!");
     }
 
     #endregion

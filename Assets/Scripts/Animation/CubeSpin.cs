@@ -18,8 +18,15 @@ public class CubeSpin : MonoBehaviour
         // Rotate the cube around its local axes (X, Y)
         transform.Rotate(Vector3.one * spinSpeed * Time.deltaTime, Space.Self);
 
-        // Apply oscillation
+        // Oscillate between two points.
         float oscillation = Mathf.Sin(Time.time * oscillationSpeed) * oscillationHeight;
         transform.position = initialPosition + new Vector3(0, oscillation, 0);
+    }
+
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Vector3 oscillationTarget = initialPosition + new Vector3(0, oscillationHeight, 0);
+        Gizmos.DrawLine(initialPosition, oscillationTarget);
     }
 }
