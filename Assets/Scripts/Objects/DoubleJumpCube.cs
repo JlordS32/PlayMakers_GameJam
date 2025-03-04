@@ -2,15 +2,13 @@ using UnityEngine;
 
 public class DoubleJumpCube : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    void OnTriggerEnter(Collider other)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        if (other.CompareTag("Player"))
+        {
+            PlayerMovement playerMovement = other.GetComponent<PlayerMovement>();
+            playerMovement.AddJump();
+            Destroy(gameObject);
+        }
     }
 }

@@ -23,6 +23,7 @@ public class PlayerMovement : MonoBehaviour
 
     // Public variables
     private int dashes = 0;
+    private int extraJumps = 1;
 
     // Private variables
     private Vector2 movementInput;
@@ -56,6 +57,14 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
         }
+        else
+        {
+            if (extraJumps > 0)
+            {
+                rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+                extraJumps--;
+            }
+        }
     }
 
     void Update()
@@ -64,6 +73,8 @@ public class PlayerMovement : MonoBehaviour
 
         Vector3 forward = cameraTransform.forward;
         Vector3 right = cameraTransform.right;
+        Debug.Log(extraJumps);
+        Debug.Log("Grounded: " + isGrounded);
 
         // Compute movement direction
         Vector3 moveDirection = (forward * movementInput.y + right * movementInput.x).normalized;
@@ -85,6 +96,12 @@ public class PlayerMovement : MonoBehaviour
     {
         dashes++;
         Debug.Log("Dash obtained!");
+    }
+
+    public void AddJump()
+    {
+        extraJumps++;
+        Debug.Log("Jump obtained!");
     }
 
     #endregion
@@ -109,7 +126,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 Debug.Log("Dashing");
                 speed = dashingSpeed;
-                dashes--; 
+                dashes--;
             }
             else
             {
