@@ -2,6 +2,10 @@ fileFormatVersion: 2
 guid: fb80e8336933e9e408703d991a72cae9
 PrefabImporter:
   externalObjects: {}
+<<<<<<<< HEAD:Assets/Prefabs/Objects/Bridge (1).prefab.meta
+========
+  mainObjectFileID: 11400000
+>>>>>>>> origin/main:Assets/ScriptableObjects/PlayerData.asset.meta
   userData: 
   assetBundleName: 
   assetBundleVariant: 
