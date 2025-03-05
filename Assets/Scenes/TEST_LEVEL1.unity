@@ -14081,7 +14081,7 @@ PrefabInstance:
     - target: {fileID: 7239608105761786142, guid: 7bc4837364564cf48b9e5d73af57db2a, type: 3}
       propertyPath: triggerEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 382529184}
     - target: {fileID: 7239608105761786142, guid: 7bc4837364564cf48b9e5d73af57db2a, type: 3}
       propertyPath: triggerEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: toggleTrigger
@@ -14906,7 +14906,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 4271e1f51cf274c499b8283b04da0c03, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.35
+      value: -2.01
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 4271e1f51cf274c499b8283b04da0c03, type: 3}
       propertyPath: m_LocalPosition.y
