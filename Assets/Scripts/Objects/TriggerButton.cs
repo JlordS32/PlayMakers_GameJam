@@ -9,6 +9,7 @@ public class TriggerButton : MonoBehaviour
     [SerializeField] private List<string> targetTags;
 
     private Animator animator;
+    private HashSet<GameObject> objectsOnButton = new HashSet<GameObject>();
 
     void Awake()
     {
@@ -27,6 +28,8 @@ public class TriggerButton : MonoBehaviour
         {
             if (other.gameObject.CompareTag(tag))
             {
+                objectsOnButton.Add(other.gameObject);
+
                 if (!animator.GetBool("Pressed"))
                 {
                     animator.SetBool("Pressed", true);
@@ -37,12 +40,24 @@ public class TriggerButton : MonoBehaviour
         }
     }
 
-
     void OnTriggerExit(Collider other)
     {
-        animator.SetBool("Pressed", false);
+        foreach (string tag in targetTags)
+        {
+            if (other.gameObject.CompareTag(tag))
+            {
+                objectsOnButton.Remove(other.gameObject); 
 
-        if (!triggerOnExit) return;
-        triggerEvent.Invoke();
+                if (objectsOnButton.Count == 0)
+                {
+                    animator.SetBool("Pressed", false);
+                    if (triggerOnExit)
+                    {
+                        triggerEvent.Invoke();
+                    }
+                }
+                return;
+            }
+        }
     }
 }
