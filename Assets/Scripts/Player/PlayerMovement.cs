@@ -1,3 +1,4 @@
+using NUnit.Framework.Internal;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -23,7 +24,7 @@ public class PlayerMovement : MonoBehaviour
 
     // Public variables
     private int dashes = 0;
-    private int extraJumps = 1;
+    private int extraJumps = 0;
 
     // Private variables
     private Vector2 movementInput;
@@ -100,6 +101,11 @@ public class PlayerMovement : MonoBehaviour
     {
         extraJumps++;
         Debug.Log("Jump obtained!");
+    }
+
+    public int getExtraJumps()
+    {
+        return extraJumps;
     }
 
     #endregion
