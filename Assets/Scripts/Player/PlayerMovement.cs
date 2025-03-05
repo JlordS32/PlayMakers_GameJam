@@ -1,10 +1,10 @@
-using NUnit.Framework.Internal;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
+    #region VARIABLES
     [Header("Base Parameters")]
     [SerializeField] private float speed = 1f;
     [SerializeField] private float runningSpeed = 1f;
@@ -23,15 +23,15 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private LayerMask groundLayer;
 
     // Public variables
-    private int dashes = 0;
-    private int extraJumps = 0;
+    public int dashes { get; private set; } = 0;
+    public int extraJumps { get; private set; } = 0;
 
     // Private variables
     private Vector2 movementInput;
     private Rigidbody rb;
     private float initialSpeed;
     private bool isGrounded;
-
+    #endregion
     #region UNITY_FUNCTIONS
     void Awake()
     {
