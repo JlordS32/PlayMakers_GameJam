@@ -8,6 +8,7 @@ TagManager:
   - Collectibles
   - Object
   - Objects
+  - Ground
   layers:
   - Default
   - TransparentFX
