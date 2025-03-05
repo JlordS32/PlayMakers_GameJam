@@ -12,7 +12,7 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Dash Parameters")]
     [SerializeField] private float dashingSpeed = 1f;
-    [SerializeField] private float delayTime = 1;
+    [SerializeField] private float decayTime = 1;
 
     [Header("Falling Parameters")]
     [SerializeField] private float extraGravity = 1f;
@@ -48,16 +48,20 @@ public class PlayerMovement : MonoBehaviour
 
     public void OnSprint(InputValue value)
     {
-        StopCoroutine(Accelerate(value.isPressed));
-        StartCoroutine(Accelerate(value.isPressed));
+        if (value.isPressed)
+        {
+            if (isGrounded) UpdateSpeed(value.isPressed);
+            else
+            {
+                if (dashes > 0) StartCoroutine(Dash());
+            }
+        }
+        else UpdateSpeed(value.isPressed);
     }
 
     public void OnJump()
     {
-        if (isGrounded)
-        {
-            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-        }
+        if (isGrounded) rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
         else
         {
             if (extraJumps > 0)
@@ -83,10 +87,7 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.linearVelocity += extraGravity * Time.deltaTime * Vector3.down;
         }
-        else
-        {
-            rb.linearVelocity = new Vector3(moveDirection.x * speed, rb.linearVelocity.y, moveDirection.z * speed);
-        }
+        else rb.linearVelocity = new Vector3(moveDirection.x * speed, rb.linearVelocity.y, moveDirection.z * speed);
     }
     #endregion
 
@@ -118,35 +119,25 @@ public class PlayerMovement : MonoBehaviour
         isGrounded = Physics.Raycast(transform.position, Vector3.down, groundCheckDistance, groundLayer);
     }
 
-    IEnumerator Accelerate(bool isSprinting = false)
+    void UpdateSpeed(bool isSprinting)
     {
-        if (isSprinting)
+        if (isSprinting && isGrounded)
         {
-            if (isGrounded)
-            {
-                speed = runningSpeed;
-            }
-            else if (dashes > 0 && !isGrounded)
-            {
-                Debug.Log("Dashing");
-                speed = dashingSpeed;
-                dashes--;
-            }
-            else
-            {
-                speed = initialSpeed;
-            }
+            speed = runningSpeed;
         }
         else
         {
             speed = initialSpeed;
         }
-
-        yield return new WaitForSeconds(delayTime);
-
-        speed = isGrounded ? runningSpeed : initialSpeed;
     }
 
+    IEnumerator Dash()
+    {
+        speed = dashingSpeed;
+        dashes--;
+        yield return new WaitForSeconds(decayTime);
+        speed = initialSpeed;
+    }
 
     // This is the red line below the player.
     void OnDrawGizmos()
