@@ -42,7 +42,7 @@ public class ObjectOscillator : MonoBehaviour
         }
         else
         {
-            Vector3 end = initialPosition + new Vector3(oscillationX * oscillationDistance * 2, oscillationY * oscillationDistance * 2, oscillationZ * oscillationDistance * 2);
+            Vector3 end = initialPosition  + new Vector3(oscillationX * oscillationDistance * 2, oscillationY * oscillationDistance * 2, oscillationZ * oscillationDistance * 2);
             Gizmos.DrawLine(initialPosition, end);
         }
     }

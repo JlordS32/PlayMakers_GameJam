@@ -130,6 +130,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4246138008320038045, guid: d47692b44166ca044a3ae5df44677f05, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 4632115130141197171, guid: d47692b44166ca044a3ae5df44677f05, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -145,6 +149,14 @@ PrefabInstance:
     - target: {fileID: 5518936246123595262, guid: d47692b44166ca044a3ae5df44677f05, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: TogglePauseGame
+      objectReference: {fileID: 0}
+    - target: {fileID: 5665578405143267895, guid: d47692b44166ca044a3ae5df44677f05, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 512.6678
+      objectReference: {fileID: 0}
+    - target: {fileID: 5665578405143267895, guid: d47692b44166ca044a3ae5df44677f05, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -74.97809
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -309,6 +321,10 @@ PrefabInstance:
       propertyPath: powerUpsText
       value: 
       objectReference: {fileID: 1871051810316048545}
+    - target: {fileID: 6822262515326376414, guid: 63b850445a2c7674087d2eb6c9e71387, type: 3}
+      propertyPath: playerData
+      value: 
+      objectReference: {fileID: 11400000, guid: ac84573cdc9c5544d84cf297a7b638cc, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

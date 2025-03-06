@@ -3,6 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class GameSceneManager : MonoBehaviour
 {
+    [SerializeField] private PlayerData playerData;
     public static int level;
 
     void Awake()
@@ -10,20 +11,16 @@ public class GameSceneManager : MonoBehaviour
         level = SceneManager.GetActiveScene().buildIndex;
     }
 
-    public static void LoadNextScene()
+    public void LoadNextScene()
     {
         level++;
+        playerData.ResetData();
         SceneManager.LoadScene(level);
-    }
-
-    public static void LoadScene(int value)
-    {
-
-        SceneManager.LoadScene(value, LoadSceneMode.Single);
     }
 
     public void LoadScene(string sceneName)
     {
+        playerData.ResetData();
         SceneManager.LoadScene(sceneName);
     }
 }
