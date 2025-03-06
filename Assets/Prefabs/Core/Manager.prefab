@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6988622809283415584}
+  - component: {fileID: 4147664851685429666}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -31,6 +32,35 @@ Transform:
   m_Children: []
   m_Father: {fileID: 3232343494431135620}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4147664851685429666
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 903327143295256545}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ac89fa61ee2dc340836dbb526b32e13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pauseButton:
+    m_Name: Pause Button
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: b3d8e03f-c1e5-4023-8b9d-6775fe496cd2
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 4819507c-8f64-4206-8c88-079d4774116e
+      m_Path: <Keyboard>/escape
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Pause Button
+      m_Flags: 0
+    m_Flags: 0
 --- !u!1 &1731096972797196466
 GameObject:
   m_ObjectHideFlags: 0

@@ -3,7 +3,7 @@ using TMPro;
 
 public class UIManager : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI uiText;
+    [SerializeField] private TextMeshProUGUI timerText;
     [SerializeField] private TextMeshProUGUI powerUpsText;
 
     private PlayerMovement playerMovement;
@@ -20,9 +20,9 @@ public class UIManager : MonoBehaviour
 
     public void UpdateTimerText(string newText)
     {
-        if (uiText != null)
+        if (timerText != null)
         {
-            uiText.text = newText;
+            timerText.text = newText;
         }
     }
 }
