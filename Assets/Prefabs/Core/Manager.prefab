@@ -61,6 +61,7 @@ MonoBehaviour:
       m_Action: Pause Button
       m_Flags: 0
     m_Flags: 0
+  pausePanel: {fileID: 0}
 --- !u!1 &1731096972797196466
 GameObject:
   m_ObjectHideFlags: 0
@@ -105,7 +106,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9733302fa10f4d443b5162b5d78c7476, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  uiText: {fileID: 0}
+  timerText: {fileID: 0}
   powerUpsText: {fileID: 0}
 --- !u!1 &2460407670831124212
 GameObject:
@@ -186,6 +187,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1806c2e94a3a474cb4507451ce4631f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerData: {fileID: 0}
 --- !u!1 &6878146929804656717
 GameObject:
   m_ObjectHideFlags: 0
@@ -230,3 +232,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4879828af2cdfe4cadbaf04be09e2ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerData: {fileID: 11400000, guid: ac84573cdc9c5544d84cf297a7b638cc, type: 2}

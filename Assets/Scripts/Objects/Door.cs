@@ -7,11 +7,13 @@ public class Door : MonoBehaviour
 
     private BoxCollider boxCollider;
     private Animator animator;
+    private GameSceneManager gameSceneManager;
 
     void Awake()
     {
         boxCollider = GetComponent<BoxCollider>();
         animator = GetComponent<Animator>();
+        gameSceneManager = FindFirstObjectByType<GameSceneManager>();
     }
 
     void OnCollisionEnter(Collision collision)
@@ -32,6 +34,6 @@ public class Door : MonoBehaviour
 
     IEnumerator GoNextLevel() {
         yield return new WaitForSeconds(delay);
-        GameSceneManager.LoadNextScene();
+        gameSceneManager.LoadNextScene();
     } 
 }
