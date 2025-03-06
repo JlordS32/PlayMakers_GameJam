@@ -172,7 +172,7 @@ MonoBehaviour:
   runningSpeed: 10
   jumpForce: 5
   dashingSpeed: 20
-  delayTime: 0.2
+  decayTime: 1
   extraGravity: 8
   groundCheckDistance: 1.1
   cameraTransform: {fileID: 0}
@@ -258,7 +258,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8160193374047074611}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 3d59c2e562c641147856ba7d32fd71b0, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
