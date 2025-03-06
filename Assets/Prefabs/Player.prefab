@@ -172,7 +172,7 @@ MonoBehaviour:
   runningSpeed: 10
   jumpForce: 5
   dashingSpeed: 20
-  delayTime: 0.2
+  decayTime: 1
   extraGravity: 8
   groundCheckDistance: 1.1
   cameraTransform: {fileID: 0}

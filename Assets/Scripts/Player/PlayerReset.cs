@@ -1,5 +1,5 @@
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class PlayerReset : MonoBehaviour
@@ -8,10 +8,6 @@ public class PlayerReset : MonoBehaviour
     [SerializeField] private GameObject checkpointPrefab;
     [SerializeField] private Transform parentFolder;
     [SerializeField] private PlayerData playerData;
-
-    [Header("Testing")]
-    private readonly KeyCode resetKey = KeyCode.R;
-    private readonly KeyCode checkpointKey = KeyCode.T;
 
     private GameObject currentCheckpoint;
 
@@ -28,22 +24,12 @@ public class PlayerReset : MonoBehaviour
         }
     }
 
-    void Update()
-    {
-        if (Input.GetKeyDown(checkpointKey))
-        {
-            UpdateCheckPoint();
-        }
+    public void OnCheckpoint(InputValue value) {
+        if (value.isPressed) UpdateCheckPoint();
+    }
 
-        if (Input.GetKeyDown(resetKey))
-        {
-            ResetPosition();
-        }
-
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            Debug.Log(playerData.playerPosition);
-        }
+    public void OnRestart(InputValue value) {
+        if (value.isPressed) ResetPosition();
     }
 
     void UpdateCheckPoint()
