@@ -18,6 +18,12 @@ public class GameSceneManager : MonoBehaviour
 
     public static void LoadScene(int value)
     {
-        SceneManager.LoadScene(value);
+
+        SceneManager.LoadScene(value, LoadSceneMode.Single);
+    }
+
+    public void LoadScene(string sceneName)
+    {
+        SceneManager.LoadScene(sceneName);
     }
 }

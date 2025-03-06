@@ -37,7 +37,7 @@ public class PlayerMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
-        ToggleCursor.Toggle();
+        ToggleCursor.DisableCursor();
         initialSpeed = speed;
     }
 
