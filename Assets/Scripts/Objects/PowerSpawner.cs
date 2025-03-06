@@ -8,7 +8,7 @@ public class SpawnManager : MonoBehaviour
 
     public GameObject prefab;
     public Transform spawnerBase;
-    public GameObject currentObject;
+    private GameObject currentObject;
 
     void checkAndSpawn()
     {
@@ -30,7 +30,7 @@ public class SpawnManager : MonoBehaviour
             Vector3 spawnPosition = spawnerBase.position + new Vector3(0, y, 0);
 
             // Spawn the object on the platform
-            Instantiate(prefab, spawnPosition, Quaternion.identity);
+            currentObject = Instantiate(prefab, spawnPosition, Quaternion.identity);
         }
     }
 
@@ -39,7 +39,7 @@ public class SpawnManager : MonoBehaviour
     {
 
         spawnObject();
-        InvokeRepeating("checkAndSpawn", spawnTime, spawnTime);
+        InvokeRepeating(nameof(checkAndSpawn), spawnTime, spawnTime);
 
     }
 }

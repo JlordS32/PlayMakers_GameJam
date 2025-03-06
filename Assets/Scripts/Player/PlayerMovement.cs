@@ -94,14 +94,28 @@ public class PlayerMovement : MonoBehaviour
     #region PUBLIC_METHODS
     public void AddDash()
     {
-        dashes++;
-        Debug.Log("Dash obtained!");
+        if (dashes == 0)
+        {
+            dashes++;
+            Debug.Log("Dash obtained!");
+        }
+        else
+        {
+            Debug.Log("You already have a dash!");
+        }
     }
 
     public void AddJump()
     {
-        extraJumps++;
-        Debug.Log("Jump obtained!");
+        if (extraJumps == 0)
+        {
+            extraJumps++;
+            Debug.Log("Jump obtained!");
+        }
+        else
+        {
+            Debug.Log("You already have an extra jump!");
+        }
     }
 
     public int getExtraJumps()

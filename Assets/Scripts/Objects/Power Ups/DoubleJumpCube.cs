@@ -7,8 +7,11 @@ public class DoubleJumpCube : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             PlayerMovement playerMovement = other.GetComponent<PlayerMovement>();
-            playerMovement.AddJump();
-            Destroy(gameObject);
+            if (playerMovement.getExtraJumps() == 0)
+            {
+                playerMovement.AddJump();
+                Destroy(gameObject);
+            }
         }
     }
 }
