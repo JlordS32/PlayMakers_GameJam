@@ -22,6 +22,12 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Transform cameraTransform;
     [SerializeField] private LayerMask groundLayer;
 
+    [Header("Sounds")]
+    [SerializeField] private AudioClip jumpingSound;
+    [SerializeField] private AudioClip walkingSound;
+    [SerializeField] private AudioClip runningSound;
+    [SerializeField] private AudioClip dashingSound;
+
     // Public variables
     public int dashes { get; private set; } = 0;
     public int extraJumps { get; private set; } = 0;
@@ -49,6 +55,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (value.isPressed)
         {
+            AudioManager.instance.PlaySound(runningSound);
             if (isGrounded) UpdateSpeed(value.isPressed);
             else
             {
@@ -60,12 +67,16 @@ public class PlayerMovement : MonoBehaviour
 
     public void OnJump()
     {
-        if (isGrounded) rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+        if (isGrounded) {
+            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            AudioManager.instance.PlaySound(jumpingSound);
+        }
         else
         {
             if (extraJumps > 0)
             {
                 rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+                AudioManager.instance.PlaySound(dashingSound);
                 extraJumps--;
             }
         }
@@ -86,7 +97,10 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.linearVelocity += extraGravity * Time.deltaTime * Vector3.down;
         }
-        else rb.linearVelocity = new Vector3(moveDirection.x * speed, rb.linearVelocity.y, moveDirection.z * speed);
+        else {
+            rb.linearVelocity = new Vector3(moveDirection.x * speed, rb.linearVelocity.y, moveDirection.z * speed);
+            AudioManager.instance.PlaySound(walkingSound);
+        }
     }
     #endregion
 

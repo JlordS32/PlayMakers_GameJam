@@ -149,7 +149,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1.63, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.95875, y: 0.95875, z: 0.95875}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1160616745699258954}
@@ -168,9 +168,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0fa2673109deff4998101eee352860a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
-  runningSpeed: 10
-  jumpForce: 5
+  speed: 4
+  runningSpeed: 5
+  jumpForce: 4
   dashingSpeed: 20
   decayTime: 1
   extraGravity: 8
@@ -179,6 +179,10 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 4294967295
+  jumpingSound: {fileID: 0}
+  walkingSound: {fileID: 0}
+  runningSound: {fileID: 0}
+  dashingSound: {fileID: 0}
 --- !u!114 &6264020255028981463
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,17 +1,10 @@
 using UnityEngine;
 
-public class DoubleJumpCube : MonoBehaviour
+public class DoubleJumpCube : BaseCube
 {
-    void OnTriggerEnter(Collider other)
+    protected override void OnCubeTriggered(Collider other)
     {
-        if (other.CompareTag("Player"))
-        {
-            PlayerMovement playerMovement = other.GetComponent<PlayerMovement>();
-            if (playerMovement.getExtraJumps() == 0)
-            {
-                playerMovement.AddJump();
-                Destroy(gameObject);
-            }
-        }
+        PlayerMovement playerMovement = other.GetComponent<PlayerMovement>();
+        playerMovement.AddJump();
     }
 }
