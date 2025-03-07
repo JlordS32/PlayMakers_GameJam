@@ -6,6 +6,7 @@ public class PlayerMovement : MonoBehaviour
 {
     #region VARIABLES
     [Header("Base Parameters")]
+    [SerializeField] private PlayerData playerData;
     [SerializeField] private float speed = 1f;
     [SerializeField] private float runningSpeed = 1f;
     [SerializeField] private float jumpForce = 1f;
@@ -44,6 +45,12 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
         initialSpeed = speed;
+
+        if (playerData.hasSavedPosition)
+        {
+            dashes = playerData.dashes;
+            extraJumps = playerData.extraJumps;
+        }
     }
 
     public void OnMove(InputValue value) // Callback function from Input System

@@ -10,6 +10,7 @@ public class PlayerReset : MonoBehaviour
     [SerializeField] private PlayerData playerData;
 
     private GameObject currentCheckpoint;
+    private PlayerMovement playerMovement;
 
     void Awake()
     {
@@ -22,6 +23,8 @@ public class PlayerReset : MonoBehaviour
             playerData.playerPosition = transform.position; // Store the default position
             playerData.hasSavedPosition = true;
         }
+
+        playerMovement = GetComponent<PlayerMovement>();
     }
 
     public void OnCheckpoint(InputValue value) {
@@ -58,6 +61,8 @@ public class PlayerReset : MonoBehaviour
         if (currentCheckpoint != null)
         {
             playerData.playerPosition = currentCheckpoint.transform.position;
+            playerData.dashes = playerMovement.dashes;
+            playerData.extraJumps = playerMovement.extraJumps;
             Destroy(currentCheckpoint);
 
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
