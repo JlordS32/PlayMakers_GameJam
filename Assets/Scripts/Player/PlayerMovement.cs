@@ -23,8 +23,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private LayerMask groundLayer;
 
     // Public variables
-    public int dashes { get; private set; } = 0;
-    public int extraJumps { get; private set; } = 0;
+    public int dashes { get; private set; } = 100;
+    public int extraJumps { get; private set; } = 100;
 
     // Private variables
     private Vector2 movementInput;
@@ -37,7 +37,6 @@ public class PlayerMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
-        ToggleCursor.DisableCursor();
         initialSpeed = speed;
     }
 

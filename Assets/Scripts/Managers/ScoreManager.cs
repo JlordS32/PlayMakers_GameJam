@@ -5,14 +5,18 @@ using UnityEngine.SceneManagement;
 public class ScoreManager : MonoBehaviour
 {
     [SerializeField] private PlayerData playerData;
+    [SerializeField] private ScoreData scoreData;
 
     private UIManager uiManager;
+    private GameManager gameManager;
     private float timeElapsed = 0f;
+    private string sceneName;
 
     void Awake()
     {
         uiManager = FindFirstObjectByType<UIManager>();
-        string sceneName = SceneManager.GetActiveScene().name;
+        gameManager = FindAnyObjectByType<GameManager>();
+        sceneName = SceneManager.GetActiveScene().name;
 
         if (playerData.timeElapsed.ContainsKey(sceneName))
         {
@@ -37,14 +41,14 @@ public class ScoreManager : MonoBehaviour
 
         uiManager.UpdateTimerText(timeString);
 
-        foreach (KeyValuePair<string, float> entry in playerData.timeElapsed) {
-            Debug.Log(entry.Key + ": " + entry.Value);
+        if (gameManager.levelFinished) {
+            scoreData.SetScore(sceneName, timeElapsed);
+            gameManager.levelFinished = false;
         }
     }
 
     void OnDisable()
     {
-        string sceneName = SceneManager.GetActiveScene().name;
         playerData.timeElapsed[sceneName] = timeElapsed;
     }
 

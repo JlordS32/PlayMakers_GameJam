@@ -8,17 +8,14 @@ public class Door : MonoBehaviour
     private BoxCollider boxCollider;
     private Animator animator;
     private GameSceneManager gameSceneManager;
+    private GameManager gameManager;
 
     void Awake()
     {
         boxCollider = GetComponent<BoxCollider>();
         animator = GetComponent<Animator>();
         gameSceneManager = FindFirstObjectByType<GameSceneManager>();
-    }
-
-    void OnCollisionEnter(Collision collision)
-    {
-        Debug.Log("Colliding");
+        gameManager = FindFirstObjectByType<GameManager>();
     }
 
     void OnTriggerEnter(Collider other)
@@ -33,7 +30,9 @@ public class Door : MonoBehaviour
     }
 
     IEnumerator GoNextLevel() {
+        gameManager.levelFinished = true;
         yield return new WaitForSeconds(delay);
+        gameManager.levelFinished = false;
         gameSceneManager.LoadNextScene();
     } 
 }
