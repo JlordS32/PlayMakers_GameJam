@@ -246,7 +246,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textObject: {fileID: 1758357770}
   decayTime: 20
-  message: These are power ups, green is to dash. Hold shift to use it
+  message: these are power ups, green is to dash. Hold shift to use it
 --- !u!65 &46315049
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -479,7 +479,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textObject: {fileID: 1758357770}
   decayTime: 4
-  message: You can jump on platforms and push boxes
+  message: you can jump on platforms and push boxes
 --- !u!65 &498697295
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -660,8 +660,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textObject: {fileID: 1758357770}
   decayTime: 20
-  message: Press (T) to set a checkpoint then Press (R) to reset the level, however
-    you will stay at the assigned checkpoint but all boxes and powerups will be reset
+  message: press T to set a checkpoint then Press R to reset the level, however you
+    will stay at the assigned checkpoint but all boxes and powerups will be reset
 --- !u!65 &562823509
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -843,11 +843,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2158549362030689220, guid: 0ab8d666074b0274eaf8079d58d1ec67, type: 3}
       propertyPath: m_SizeDelta.x
-      value: -915.336
+      value: 0.00024414
       objectReference: {fileID: 0}
     - target: {fileID: 2158549362030689220, guid: 0ab8d666074b0274eaf8079d58d1ec67, type: 3}
       propertyPath: m_SizeDelta.y
-      value: -398.56
+      value: -0.000061035
       objectReference: {fileID: 0}
     - target: {fileID: 2158549362030689220, guid: 0ab8d666074b0274eaf8079d58d1ec67, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -855,7 +855,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2158549362030689220, guid: 0ab8d666074b0274eaf8079d58d1ec67, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -0.000030517578
       objectReference: {fileID: 0}
     - target: {fileID: 4713431931643812600, guid: 0ab8d666074b0274eaf8079d58d1ec67, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1248,7 +1248,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textObject: {fileID: 1758357770}
   decayTime: 20
-  message: If you are ready, push a box over the button and go through the door
+  message: if you are ready, push a box over the button and go through the door
 --- !u!65 &1223805710
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1404,7 +1404,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textObject: {fileID: 1758357770}
   decayTime: 3
-  message: Boxes which are all brown are special boxes and are not reset able
+  message: boxes which are all brown are special boxes and are not reset able
 --- !u!65 &1404474462
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1636,7 +1636,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textObject: {fileID: 1758357770}
   decayTime: 20
-  message: Yellow is for double jumping
+  message: yellow is for double jumping
 --- !u!65 &1410242391
 BoxCollider:
   m_ObjectHideFlags: 0
