@@ -170,7 +170,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 4
   runningSpeed: 5
-  jumpForce: 10
+  jumpForce: 4
   dashingSpeed: 20
   decayTime: 1
   extraGravity: 8
