@@ -168,6 +168,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0fa2673109deff4998101eee352860a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerData: {fileID: 11400000, guid: ac84573cdc9c5544d84cf297a7b638cc, type: 2}
   speed: 4
   runningSpeed: 5
   jumpForce: 4

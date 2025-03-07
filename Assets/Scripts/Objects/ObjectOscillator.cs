@@ -16,6 +16,8 @@ public class ObjectOscillator : MonoBehaviour
     [SerializeField] private int cycles = 1;
 
     private Vector3 initialPosition;
+    private Rigidbody boxRigidbody;
+    private GameObject box;
     private float cycle = 0f;
     private bool trigger = false;
 
@@ -42,7 +44,7 @@ public class ObjectOscillator : MonoBehaviour
         }
         else
         {
-            Vector3 end = initialPosition  + new Vector3(oscillationX * oscillationDistance * 2, oscillationY * oscillationDistance * 2, oscillationZ * oscillationDistance * 2);
+            Vector3 end = initialPosition + new Vector3(oscillationX * oscillationDistance * 2, oscillationY * oscillationDistance * 2, oscillationZ * oscillationDistance * 2);
             Gizmos.DrawLine(initialPosition, end);
         }
     }
@@ -71,5 +73,18 @@ public class ObjectOscillator : MonoBehaviour
     public void TriggerOscillate()
     {
         trigger = true;
+    }
+
+    // Detect collision with the platform
+    private void OnCollisionEnter(Collision collision)
+    {
+        GameObject obj = collision.gameObject;
+        obj.transform.SetParent(transform);
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        GameObject obj = collision.gameObject;
+        obj.transform.SetParent(null);
     }
 }
