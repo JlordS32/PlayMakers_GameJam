@@ -23,8 +23,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private LayerMask groundLayer;
 
     // Public variables
-    public int dashes { get; private set; } = 100;
-    public int extraJumps { get; private set; } = 100;
+    public int dashes { get; private set; } = 0;
+    public int extraJumps { get; private set; } = 0;
 
     // Private variables
     private Vector2 movementInput;
