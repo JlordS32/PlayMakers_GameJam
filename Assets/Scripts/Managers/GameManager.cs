@@ -7,6 +7,8 @@ public class GameManager : MonoBehaviour
    [SerializeField] private InputAction pauseButton;
    [SerializeField] private GameObject pausePanel;
 
+   public bool levelFinished { get; set; } = false;
+
    private void OnEnable()
    {
       pauseButton.Enable();
@@ -29,8 +31,12 @@ public class GameManager : MonoBehaviour
       if (pauseButton.WasPressedThisFrame())
       {
          TogglePauseGame();
-         ToggleCursor.EnableCursor();
       }
+
+      if (!pausePanel.activeSelf)
+         ToggleCursor.DisableCursor();
+      else
+         ToggleCursor.EnableCursor();
    }
 
    public void TogglePauseGame()
@@ -42,7 +48,9 @@ public class GameManager : MonoBehaviour
    public void QuitGame()
    {
       Application.Quit();
+#if UNITY_EDITOR
       EditorApplication.isPlaying = false;
+#endif
    }
 
    private void ResetTimeScale()

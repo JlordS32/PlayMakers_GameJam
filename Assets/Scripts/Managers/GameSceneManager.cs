@@ -4,7 +4,8 @@ using UnityEngine.SceneManagement;
 public class GameSceneManager : MonoBehaviour
 {
     [SerializeField] private PlayerData playerData;
-    public static int level;
+
+    private int level;
 
     void Awake()
     {
