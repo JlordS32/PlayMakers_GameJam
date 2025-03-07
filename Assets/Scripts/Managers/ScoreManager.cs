@@ -18,13 +18,16 @@ public class ScoreManager : MonoBehaviour
         gameManager = FindAnyObjectByType<GameManager>();
         sceneName = SceneManager.GetActiveScene().name;
 
-        if (playerData.timeElapsed.ContainsKey(sceneName))
+        if (playerData.hasSavedPosition)
         {
-            timeElapsed = playerData.timeElapsed[sceneName];
-        }
-        else
-        {
-            playerData.timeElapsed[sceneName] = timeElapsed;
+            if (playerData.timeElapsed.ContainsKey(sceneName))
+            {
+                timeElapsed = playerData.timeElapsed[sceneName];
+            }
+            else
+            {
+                playerData.timeElapsed[sceneName] = timeElapsed;
+            }
         }
     }
 
@@ -41,7 +44,8 @@ public class ScoreManager : MonoBehaviour
 
         uiManager.UpdateTimerText(timeString);
 
-        if (gameManager.levelFinished) {
+        if (gameManager.levelFinished)
+        {
             scoreData.SetScore(sceneName, timeElapsed);
             gameManager.levelFinished = false;
         }

@@ -9,15 +9,19 @@ public class TriggerButton : MonoBehaviour
     [SerializeField] private List<string> targetTags;
 
     private Animator animator;
+    private AudioSource audioSource;
     private HashSet<GameObject> objectsOnButton = new HashSet<GameObject>();
 
     void Awake()
     {
         animator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     void OnTriggerEnter(Collider other)
     {
+        Debug.Log("Hey");
+        audioSource.Play();
         if (targetTags == null || targetTags.Count == 0)
         {
             Debug.LogWarning("TriggerButton: No target tags set!");
@@ -42,6 +46,7 @@ public class TriggerButton : MonoBehaviour
 
     void OnTriggerExit(Collider other)
     {
+        audioSource.Play();
         foreach (string tag in targetTags)
         {
             if (other.gameObject.CompareTag(tag))
