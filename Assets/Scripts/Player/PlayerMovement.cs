@@ -38,6 +38,11 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody rb;
     private float initialSpeed;
     private bool isGrounded;
+    private bool isWalkingSoundPlaying = false;
+    private bool isRunningSoundPlaying = false;
+    private bool isJumpingSoundPlaying = false;
+    private bool isDashingSoundPlaying = false;
+
     #endregion
     #region UNITY_FUNCTIONS
     void Awake()
@@ -74,20 +79,27 @@ public class PlayerMovement : MonoBehaviour
 
     public void OnJump()
     {
-        if (isGrounded) {
-            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-            AudioManager.instance.PlaySound(jumpingSound);
+        if (isGrounded)
+        {
+            if (!isJumpingSoundPlaying)
+            {
+                rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+                AudioManager.instance.PlaySound(jumpingSound);
+                isJumpingSoundPlaying = true;
+            }
         }
         else
         {
-            if (extraJumps > 0)
+            if (extraJumps > 0 && !isDashingSoundPlaying)
             {
                 rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
                 AudioManager.instance.PlaySound(dashingSound);
                 extraJumps--;
+                isDashingSoundPlaying = true;
             }
         }
     }
+
 
     void Update()
     {
@@ -104,11 +116,34 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.linearVelocity += extraGravity * Time.deltaTime * Vector3.down;
         }
-        else {
+        else
+        {
+            // Play walking sound when moving
+            if (movementInput.magnitude > 0 && !isWalkingSoundPlaying)
+            {
+                AudioManager.instance.PlaySound(walkingSound);
+                isWalkingSoundPlaying = true;
+            }
+            else if (movementInput.magnitude == 0)
+            {
+                isWalkingSoundPlaying = false;
+            }
+
+            // Play running sound when sprinting
+            if (movementInput.magnitude > 0 && !isRunningSoundPlaying && speed == runningSpeed)
+            {
+                AudioManager.instance.PlaySound(runningSound);
+                isRunningSoundPlaying = true;
+            }
+            else if (movementInput.magnitude == 0 || speed != runningSpeed)
+            {
+                isRunningSoundPlaying = false;
+            }
+
             rb.linearVelocity = new Vector3(moveDirection.x * speed, rb.linearVelocity.y, moveDirection.z * speed);
-            AudioManager.instance.PlaySound(walkingSound);
         }
     }
+
     #endregion
 
     #region PUBLIC_METHODS
@@ -151,7 +186,14 @@ public class PlayerMovement : MonoBehaviour
     void CheckGround()
     {
         isGrounded = Physics.Raycast(transform.position, Vector3.down, groundCheckDistance, groundLayer);
+
+        // Reset jump/dash sounds when the player lands
+        if (isGrounded)
+        {
+            ResetJumpAndDashSounds();
+        }
     }
+
 
     void UpdateSpeed(bool isSprinting)
     {
@@ -181,5 +223,12 @@ public class PlayerMovement : MonoBehaviour
         Vector3 end = transform.position + Vector3.down * groundCheckDistance;
         Gizmos.DrawLine(start, end);
     }
+
+    void ResetJumpAndDashSounds()
+    {
+        isJumpingSoundPlaying = false;
+        isDashingSoundPlaying = false;
+    }
+
     #endregion
 }

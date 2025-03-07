@@ -181,10 +181,10 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 4294967295
-  jumpingSound: {fileID: 0}
-  walkingSound: {fileID: 0}
-  runningSound: {fileID: 0}
-  dashingSound: {fileID: 0}
+  jumpingSound: {fileID: 8300000, guid: 7b1bf2e3530a66140b62811eca2eeb6d, type: 3}
+  walkingSound: {fileID: 8300000, guid: 10c19af339207ed4f97eb52c8093717f, type: 3}
+  runningSound: {fileID: 8300000, guid: 10c19af339207ed4f97eb52c8093717f, type: 3}
+  dashingSound: {fileID: 8300000, guid: 32860cce30fd08549bd4ebc9eb50b30a, type: 3}
 --- !u!114 &6264020255028981463
 MonoBehaviour:
   m_ObjectHideFlags: 0
