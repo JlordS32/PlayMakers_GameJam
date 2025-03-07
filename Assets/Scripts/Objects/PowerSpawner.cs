@@ -37,7 +37,6 @@ public class SpawnManager : MonoBehaviour
 
     void Start()
     {
-
         spawnObject();
         InvokeRepeating(nameof(checkAndSpawn), spawnTime, spawnTime);
 
