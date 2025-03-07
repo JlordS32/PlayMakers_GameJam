@@ -1,14 +1,10 @@
 using UnityEngine;
 
-public class DashCube : MonoBehaviour
+public class DashCube : BaseCube
 {
-    void OnTriggerEnter(Collider other)
+    protected override void OnCubeTriggered(Collider other)
     {
-        if (other.CompareTag("Player"))
-        {
-            PlayerMovement playerMovement = other.GetComponent<PlayerMovement>();
-            playerMovement.AddDash();
-            Destroy(gameObject);
-        }
+        PlayerMovement playerMovement = other.GetComponent<PlayerMovement>();
+        playerMovement.AddDash();
     }
 }

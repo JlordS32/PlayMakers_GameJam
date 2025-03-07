@@ -8,55 +8,52 @@ public class AudioManager : MonoBehaviour
 
     private void Awake()
     {
-        soundSource = GetComponent<AudioSource>();
-        musicSource = transform.GetChild(0).GetComponent<AudioSource>();
-
-        // Keep this object even when we go to new scene
         if (instance == null)
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
         }
-        // Destroy duplicate gameobjects
-        else if (instance != null && instance != this)
+        else
+        {
             Destroy(gameObject);
+            return;
+        }
 
-        // Assign initial volumes
-        ChangeMusicVolume(0);
-        ChangeSoundVolume(0);
+        musicSource = GetComponent<AudioSource>();
+        soundSource = transform.GetChild(0).GetComponent<AudioSource>();
+
+        // Load saved volume levels
+        ApplySavedVolumes();
     }
 
-    public void playSound(AudioClip clip)
+    private void ApplySavedVolumes()
+    {
+        float savedMusicVolume = PlayerPrefs.GetFloat("musicVolume", 1f);
+        float savedSoundVolume = PlayerPrefs.GetFloat("soundVolume", 1f);
+
+        musicSource.volume = savedMusicVolume * 0.5f;
+        soundSource.volume = savedSoundVolume * 1f;
+    }
+
+    public void PlaySound(AudioClip clip)
     {
         soundSource.PlayOneShot(clip);
     }
 
-    public void ChangeSoundVolume(float _change)
+    public void SetSoundVolume(float newVolume)
     {
-        ChangeSourceVolume(1, "soundVolume", _change, soundSource);
-    }
-    public void ChangeMusicVolume(float _change)
-    {
-        ChangeSourceVolume(0.3f, "musicVolume", _change, musicSource);
+        SetSourceVolume(1f, "soundVolume", newVolume, soundSource);
     }
 
-    private void ChangeSourceVolume(float baseVolume, string volumeName, float change, AudioSource source)
+    public void SetMusicVolume(float newVolume)
     {
-        // Get initial value of volume and change it
-        float currentVolume = PlayerPrefs.GetFloat(volumeName, 1);
-        currentVolume += change;
+        SetSourceVolume(0.3f, "musicVolume", newVolume, musicSource);
+    }
 
-        // Check if we reached the maximum or minimum value
-        if (currentVolume > 1)
-            currentVolume = 0;
-        else if (currentVolume < 0)
-            currentVolume = 1;
-
-        // Assign final value
-        float finalVolume = currentVolume * baseVolume;
-        source.volume = finalVolume;
-
-        // Save final value to player prefs
-        PlayerPrefs.SetFloat(volumeName, currentVolume);
+    private void SetSourceVolume(float baseVolume, string volumeName, float newVolume, AudioSource source)
+    {
+        float clampedVolume = Mathf.Clamp(newVolume, 0f, 1f);
+        source.volume = clampedVolume * baseVolume;
+        PlayerPrefs.SetFloat(volumeName, clampedVolume);
     }
 }

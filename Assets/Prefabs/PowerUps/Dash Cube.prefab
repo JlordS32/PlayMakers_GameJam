@@ -182,6 +182,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27bb3577886c3074abe0e982658fe786, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  collectedSound: {fileID: 8300000, guid: db6bd02aa99ca734fb7794a1df2aa8a7, type: 3}
 --- !u!198 &9208873701701977637
 ParticleSystem:
   m_ObjectHideFlags: 0

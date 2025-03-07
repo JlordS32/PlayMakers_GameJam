@@ -55,7 +55,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (value.isPressed)
         {
-            AudioManager.instance.playSound(runningSound);
+            AudioManager.instance.PlaySound(runningSound);
             if (isGrounded) UpdateSpeed(value.isPressed);
             else
             {
@@ -69,14 +69,14 @@ public class PlayerMovement : MonoBehaviour
     {
         if (isGrounded) {
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-            AudioManager.instance.playSound(jumpingSound);
+            AudioManager.instance.PlaySound(jumpingSound);
         }
         else
         {
             if (extraJumps > 0)
             {
                 rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-                AudioManager.instance.playSound(dashingSound);
+                AudioManager.instance.PlaySound(dashingSound);
                 extraJumps--;
             }
         }
@@ -99,7 +99,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else {
             rb.linearVelocity = new Vector3(moveDirection.x * speed, rb.linearVelocity.y, moveDirection.z * speed);
-            AudioManager.instance.playSound(walkingSound);
+            AudioManager.instance.PlaySound(walkingSound);
         }
     }
     #endregion
