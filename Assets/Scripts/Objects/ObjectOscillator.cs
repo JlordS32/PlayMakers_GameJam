@@ -16,8 +16,6 @@ public class ObjectOscillator : MonoBehaviour
     [SerializeField] private int cycles = 1;
 
     private Vector3 initialPosition;
-    private Rigidbody boxRigidbody;
-    private GameObject box;
     private float cycle = 0f;
     private bool trigger = false;
 
@@ -79,7 +77,15 @@ public class ObjectOscillator : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         GameObject obj = collision.gameObject;
-        obj.transform.SetParent(transform);
+
+        foreach (ContactPoint contact in collision.contacts)
+        {
+           Vector3 contactNormal = contact.normal;
+            if (Vector3.Dot(contactNormal, Vector3.down) > 0.5f) // If collision came from the top
+            {
+                obj.transform.SetParent(transform);
+            }
+        }
     }
 
     private void OnCollisionExit(Collision collision)
