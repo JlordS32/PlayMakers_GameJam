@@ -1,10 +1,9 @@
 using UnityEngine;
 
-public class SpawnManager : MonoBehaviour
+public class PowerSpawner : MonoBehaviour
 {
     [SerializeField] private float y;
     [SerializeField] private float spawnTime;   
-
 
     public GameObject prefab;
     public Transform spawnerBase;
@@ -39,6 +38,5 @@ public class SpawnManager : MonoBehaviour
     {
         spawnObject();
         InvokeRepeating(nameof(checkAndSpawn), spawnTime, spawnTime);
-
     }
 }

@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 51b74d7bad397457d883c5940f7664d8, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -246,7 +246,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textObject: {fileID: 1758357770}
   decayTime: 20
-  message: These are power ups, green is to dash. Hold shift to use it
+  message: These are power ups, green is to dash. Press forward + [Shift] to dash
+    mid-air.
 --- !u!65 &46315049
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -443,7 +444,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4585540917975530482, guid: d22bc203fd4312644b0294aece7c18f4, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1476639179}
   m_SourcePrefab: {fileID: 100100000, guid: d22bc203fd4312644b0294aece7c18f4, type: 3}
 --- !u!1 &498697293
 GameObject:
@@ -1726,6 +1730,25 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1476639175 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4585540917975530482, guid: d22bc203fd4312644b0294aece7c18f4, type: 3}
+  m_PrefabInstance: {fileID: 432403484}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1476639179
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1476639175}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5dbe9156d604de84dba64bfe676cb3d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectData: {fileID: 11400000, guid: f575e92ebb49eb74c98345e4fa5c62d0, type: 2}
+  key: box
 --- !u!1001 &1532286224
 PrefabInstance:
   m_ObjectHideFlags: 0

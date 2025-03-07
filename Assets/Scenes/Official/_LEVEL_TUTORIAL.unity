@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: c494c335823f54b52b2e87e1b7a63a23, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -246,7 +246,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textObject: {fileID: 1758357770}
   decayTime: 20
-  message: these are power ups, green is to dash. Hold shift to use it
+  message: these are power ups, green is to dash. Press forward and hold [Shift]
+    to dash mid-air.
 --- !u!65 &46315049
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -855,7 +856,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2158549362030689220, guid: 0ab8d666074b0274eaf8079d58d1ec67, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -0.000030517578
+      value: -0.000061035156
       objectReference: {fileID: 0}
     - target: {fileID: 4713431931643812600, guid: 0ab8d666074b0274eaf8079d58d1ec67, type: 3}
       propertyPath: m_LocalPosition.x
