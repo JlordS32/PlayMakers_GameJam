@@ -1,7 +1,12 @@
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class AudioManager : MonoBehaviour
 {
+    [SerializeField] private AudioClip defaultMusic;
+    [SerializeField] private List<AudioClip> bgMusic;
+
     public static AudioManager instance { get; private set; }
     private AudioSource soundSource;
     private AudioSource musicSource;
@@ -19,11 +24,42 @@ public class AudioManager : MonoBehaviour
             return;
         }
 
-        musicSource = GetComponent<AudioSource>();
-        soundSource = transform.GetChild(0).GetComponent<AudioSource>();
-
-        // Load saved volume levels
+        musicSource = musicSource != null ? musicSource : GetComponent<AudioSource>();
+        soundSource = soundSource != null ? soundSource : GetComponent<AudioSource>();
         ApplySavedVolumes();
+
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDestroy()
+    {
+        // Unsubscribe when the object is destroyed
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    void Start()
+    {
+        PlayMusicForCurrentScene();
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        musicSource = musicSource != null ? musicSource : GetComponent<AudioSource>();
+        soundSource = soundSource != null ? soundSource : GetComponent<AudioSource>();
+
+        PlayMusicForCurrentScene();
+    }
+
+    // Play music depending on the scene
+    private void PlayMusicForCurrentScene()
+    {
+        if (musicSource == null) return;
+
+        AudioClip sceneMusic = bgMusic.Find(x => x.name == SceneManager.GetActiveScene().name);
+
+        // If no scene-specific music is found, use default music
+        musicSource.clip = sceneMusic != null ? sceneMusic : defaultMusic;
+        musicSource.Play();
     }
 
     private void ApplySavedVolumes()
@@ -52,6 +88,8 @@ public class AudioManager : MonoBehaviour
 
     private void SetSourceVolume(float baseVolume, string volumeName, float newVolume, AudioSource source)
     {
+        if (source == null) return;
+
         float clampedVolume = Mathf.Clamp(newVolume, 0f, 1f);
         source.volume = clampedVolume * baseVolume;
         PlayerPrefs.SetFloat(volumeName, clampedVolume);

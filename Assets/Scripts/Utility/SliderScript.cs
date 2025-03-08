@@ -11,6 +11,16 @@ public class SliderScript : MonoBehaviour
         if (slider != null)
         {
             slider.onValueChanged.AddListener(LogSliderValue);
+            
+            // Set slider to saved volume
+            if (volumeName == "musicVolume")
+            {
+                slider.value = PlayerPrefs.GetFloat("musicVolume", 1f);
+            }
+            else if (volumeName == "soundVolume")
+            {
+                slider.value = PlayerPrefs.GetFloat("soundVolume", 1f);
+            }
         }
         else
         {
@@ -20,13 +30,14 @@ public class SliderScript : MonoBehaviour
 
     private void LogSliderValue(float value)
     {
-        if (volumeName == "musicVolume") {
+        if (volumeName == "musicVolume")
+        {
             AudioManager.instance.SetMusicVolume(value);
         }
-
-        if (volumeName == "soundVolume") {
+        else if (volumeName == "soundVolume")
+        {
             AudioManager.instance.SetSoundVolume(value);
-        } 
+        }
     }
 
     void OnDestroy()
