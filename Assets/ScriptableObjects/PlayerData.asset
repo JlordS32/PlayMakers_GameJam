@@ -14,3 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerPosition: {x: 0, y: 0, z: 0}
   hasSavedPosition: 0
+  extraJumps: 0
+  dashes: 0
